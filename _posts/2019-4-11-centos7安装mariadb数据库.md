@@ -13,30 +13,67 @@ tags:
 ---
 
 >记录一下过程
+
+
 #数据库常用命令
+
+
 安装mysql数据库: yum install mariadb-server mariadb-libs mariadb   yum isntall mariadb*
+
+
 启用数据库: systemctl start mariadb
+
+
 关闭数据库: systemctl stop mariadb
+
+
 重启数据库: systemctl restart mariadb
+
+
 设置为开机启动: systemctl enable mariadb
+
+
 查看数据库状态:  systemctl status mariadb
+
+
 卸载数据库: yum -y remove mari*
+
+
 删除数据库文件: rm -rf /var/lib/mysql/*
+
 
 #systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。
  
 启动一个服务：systemctl start firewalld.service
+
+
 关闭一个服务：systemctl stop firewalld.service
+
+
 重启一个服务：systemctl restart firewalld.service
+
+
 显示一个服务的状态：systemctl status firewalld.service
+
+
 在开机时启用一个服务：systemctl enable firewalld.service
+
+
 在开机时禁用一个服务：systemctl disable firewalld.service
+
+
 查看服务是否开机启动：systemctl is-enabled firewalld.service
+
+
 查看已启动的服务列表：systemctl list-unit-files|grep enabled
+
+
 查看启动失败的服务列表：systemctl --failed
 
 
 #对 MariaDB 进行安全配置
+
+
 >通过以下命令进行安全配置，根据实际情况用Y/N回复以下问题：设置 MariaDB 的 root 账户密码，删除匿名用户，禁用 root 远程登录，删除测试数据库，重新加载权限表。
 
 mysql_secure_installation
@@ -53,6 +90,8 @@ mysql -u root -p
 
 
 #为 MariaDB 配置远程访问权限
+
+
 在第一步中如果禁用 root 远程登录选择 Y 的话就不能在别的电脑通过navicat等工具连接到数据库，这时就需要给对应的 MariaDB 账户分配权限，允许使用该账户远程连接到MariaDB。可以输入以下命令查看账号信息：
 
 select User, host from mysql.user;
@@ -74,6 +113,8 @@ FLUSH PRIVILEGES;
 这个时候发现相比之前多了一项，它的host项是%，这个时候说明配置成功了，我们可以用该账号进行远程访问了。
 
 #CentOS 7 开放防火墙端口
+
+
 在上一步后如果还是不能远程连上数据库的话应该就是3306端口被防火墙拦截了，这时我们就需要关闭防火墙或者开放防火墙端口。
 
 >关闭防火墙：
@@ -109,20 +150,47 @@ firewall-cmd --query-port=80/tcp
 　　firewall-cmd --reload
 
 #firewalld的基本使用
+
  
 启动： systemctl start firewalld
+
+
 查看状态： systemctl status firewalld
+
+
 停止： systemctl disable firewalld
+
+
 禁用： systemctl stop firewalld
+
+
 查看版本： firewall-cmd --version
+
+
 查看帮助： firewall-cmd --help
+
+
 显示状态： firewall-cmd --state
+
+
 查看所有打开的端口： firewall-cmd --zone=public --list-ports
+
+
 更新防火墙规则： firewall-cmd --reload
+
+
 查看区域信息:  firewall-cmd --get-active-zones
+
+
 查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0
+
+
 拒绝所有包：firewall-cmd --panic-on
+
+
 取消拒绝状态： firewall-cmd --panic-off
+
+
 查看是否拒绝： firewall-cmd --query-panic
 
 #开启一个端口
@@ -136,6 +204,8 @@ firewall-cmd --zone= public --query-port=80/tcp
 
 
 #设置数据库字母大小写不敏感
+
+
 vi /etc/my.cnf.d/server.cnf
 
 >在[mysqld]下加上】
@@ -146,13 +216,17 @@ lower_case_table_names=1
 
 
 #设置MariaDB数据库默认编码
+
+
 MariaDB的默认编码是latin1，插入中文会乱码，因此需要将编码改为utf8。
 
 #1.登录，使用以下命令查看当前使用的字符集，应该有好几个不是utf8格式。
 
+
 SHOW VARIABLES LIKE 'character%';
 
 #2.修改的配置文件
+
 
 vi /etc/my.cnf.d/client.cnf
 
@@ -165,7 +239,10 @@ vi /etc/my.cnf.d/server.cnf
 >在[mysqld]字段里加入
 
 character-set-server=utf8
+
+
 #3.重启 MariaDB 配置生效。
+
 
 systemctl restart mariadb
 
