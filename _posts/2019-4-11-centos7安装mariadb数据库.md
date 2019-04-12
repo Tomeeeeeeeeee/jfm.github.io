@@ -23,6 +23,18 @@ tags:
 卸载数据库: yum -y remove mari*
 删除数据库文件: rm -rf /var/lib/mysql/*
 
+#systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。
+ 
+启动一个服务：systemctl start firewalld.service
+关闭一个服务：systemctl stop firewalld.service
+重启一个服务：systemctl restart firewalld.service
+显示一个服务的状态：systemctl status firewalld.service
+在开机时启用一个服务：systemctl enable firewalld.service
+在开机时禁用一个服务：systemctl disable firewalld.service
+查看服务是否开机启动：systemctl is-enabled firewalld.service
+查看已启动的服务列表：systemctl list-unit-files|grep enabled
+查看启动失败的服务列表：systemctl --failed
+
 
 #对 MariaDB 进行安全配置
 >通过以下命令进行安全配置，根据实际情况用Y/N回复以下问题：设置 MariaDB 的 root 账户密码，删除匿名用户，禁用 root 远程登录，删除测试数据库，重新加载权限表。
@@ -156,5 +168,7 @@ character-set-server=utf8
 #3.重启 MariaDB 配置生效。
 
 systemctl restart mariadb
+
+
 
 
