@@ -1,13 +1,13 @@
 ---
 layout:     post
-title:      centos7
+title:      Centos 7
 subtitle:   安装Apache
 date:       2019-4-12
 author:     MY
 header-img: img/post-bg-2015.jpg
 catalog: true
 tags:
-    - centos
+    - Centos 7
 	- Apache
     
 ---

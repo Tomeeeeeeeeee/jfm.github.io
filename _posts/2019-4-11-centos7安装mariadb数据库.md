@@ -1,10 +1,10 @@
 ---
 layout:     post
-title:      centos7
+title:      Centos 7
 subtitle:   MariaDB数据库安装
 date:       2019-4-11
 author:     MY
-header-img: img/post-bg-coffee.jpg
+header-img: img/post-bg-miui6.jpg
 catalog: true
 tags:
     - centos7
