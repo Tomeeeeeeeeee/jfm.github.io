@@ -1,10 +1,10 @@
 # Site settings
 title: MY Blog
 SEOTitle: 蒋发明的博客 | MY Blog
-header-img: img/post-bg-rwd.jpg
+header-img: img/post-bg-2015.jpg
 email: jfm357413970@gmail.com
 description: "Every failure is leading towards success."
-keyword: "MY, MY Blog, 蒋发明的博客, jiangfaming, iOS, Apple, iPhone"
+keyword: "MY, MY Blog, 蒋发明的博客, jiangfaming"
 url: "http://jiangfaming.github.io"          # your host, for absolute URL
 baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
 github_repo: "https://github.com/jiangfaming/jiangfaming.github.io.git" # you code repository
