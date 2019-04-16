@@ -4,7 +4,7 @@ title:      Centos 7
 subtitle:   安装Apache
 date:       2019-4-12
 author:     MY
-header-img: img/post-bg-2015.jpg
+header-img: img/post-bg-2019.jpg
 catalog: true
 tags:
     - Centos 7  Apache

@@ -4,7 +4,7 @@ title:      Centos 7
 subtitle:   MariaDB数据库安装
 date:       2019-4-11
 author:     MY
-header-img: img/post-bg-miui6.jpg
+header-img: img/post-bg-2019.jpg
 catalog: true
 tags:
     - centos 7
