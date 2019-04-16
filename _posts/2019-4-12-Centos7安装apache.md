@@ -7,8 +7,7 @@ author:     MY
 header-img: img/post-bg-2015.jpg
 catalog: true
 tags:
-    - Centos 7
-	- Apache
+    - Centos 7  Apache
     
 ---
 

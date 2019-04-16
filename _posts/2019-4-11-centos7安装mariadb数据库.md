@@ -7,15 +7,14 @@ author:     MY
 header-img: img/post-bg-miui6.jpg
 catalog: true
 tags:
-    - centos7
-	- MariaDB数据库
+    - centos 7
     
 ---
 
 >记录一下过程
 
 
-#数据库常用命令
+# 数据库常用命令
 
 
 安装mysql数据库: yum install mariadb-server mariadb-libs mariadb   yum isntall mariadb*
@@ -42,7 +41,7 @@ tags:
 删除数据库文件: rm -rf /var/lib/mysql/*
 
 
-#systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。
+# systemctl是CentOS7的服务管理工具中主要的工具，它融合之前service和chkconfig的功能于一体。
  
 启动一个服务：systemctl start firewalld.service
 
@@ -71,7 +70,7 @@ tags:
 查看启动失败的服务列表：systemctl --failed
 
 
-#对 MariaDB 进行安全配置
+# 对 MariaDB 进行安全配置
 
 
 >通过以下命令进行安全配置，根据实际情况用Y/N回复以下问题：设置 MariaDB 的 root 账户密码，删除匿名用户，禁用 root 远程登录，删除测试数据库，重新加载权限表。
@@ -89,7 +88,7 @@ mysql --version
 mysql -u root -p
 
 
-#为 MariaDB 配置远程访问权限
+# 为 MariaDB 配置远程访问权限
 
 
 在第一步中如果禁用 root 远程登录选择 Y 的话就不能在别的电脑通过navicat等工具连接到数据库，这时就需要给对应的 MariaDB 账户分配权限，允许使用该账户远程连接到MariaDB。可以输入以下命令查看账号信息：
@@ -112,7 +111,7 @@ FLUSH PRIVILEGES;
 
 这个时候发现相比之前多了一项，它的host项是%，这个时候说明配置成功了，我们可以用该账号进行远程访问了。
 
-#CentOS 7 开放防火墙端口
+# CentOS 7 开放防火墙端口
 
 
 在上一步后如果还是不能远程连上数据库的话应该就是3306端口被防火墙拦截了，这时我们就需要关闭防火墙或者开放防火墙端口。
@@ -149,7 +148,7 @@ firewall-cmd --query-port=80/tcp
  
 　　firewall-cmd --reload
 
-#firewalld的基本使用
+# firewalld的基本使用
 
  
 启动： systemctl start firewalld
@@ -193,7 +192,7 @@ firewall-cmd --query-port=80/tcp
 
 查看是否拒绝： firewall-cmd --query-panic
 
-#开启一个端口
+# 开启一个端口
  
 >添加
 firewall-cmd --zone=public --add-port=80/tcp --permanent    （--permanent永久生效，没有此参数重启后失效）
@@ -203,7 +202,7 @@ firewall-cmd --reload
 firewall-cmd --zone= public --query-port=80/tcp
 
 
-#设置数据库字母大小写不敏感
+# 设置数据库字母大小写不敏感
 
 
 vi /etc/my.cnf.d/server.cnf
@@ -215,17 +214,17 @@ lower_case_table_names=1
 默认是等于0的,即大小写敏感。改成1就OK了。如果之前已经建了数据库要把之前建立的数据库删除，重建才生效。
 
 
-#设置MariaDB数据库默认编码
+# 设置MariaDB数据库默认编码
 
 
 MariaDB的默认编码是latin1，插入中文会乱码，因此需要将编码改为utf8。
 
-#1.登录，使用以下命令查看当前使用的字符集，应该有好几个不是utf8格式。
+# 1.登录，使用以下命令查看当前使用的字符集，应该有好几个不是utf8格式。
 
 
 SHOW VARIABLES LIKE 'character%';
 
-#2.修改的配置文件
+# 2.修改的配置文件
 
 
 vi /etc/my.cnf.d/client.cnf
@@ -241,7 +240,7 @@ vi /etc/my.cnf.d/server.cnf
 character-set-server=utf8
 
 
-#3.重启 MariaDB 配置生效。
+# 3.重启 MariaDB 配置生效。
 
 
 systemctl restart mariadb
