@@ -41,7 +41,7 @@ tags:
 #  4.将PV加入卷组（VG）使用 vgextend 命令把/dev/vdb1加入到centos，使用 vgdisplay 查看卷组信息，显示卷组名为(vg name)centos，空闲大小(free)为0。
 
 
-![](LVM/LVM4_LI.png)
+![avatar](LVM/LVM4_LI.png)
 
 
 
